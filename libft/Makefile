@@ -6,7 +6,7 @@
 #    By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/20 14:54:52 by ghenaut-          #+#    #+#              #
-#    Updated: 2022/07/01 16:19:29 by ghenaut-         ###   ########.fr        #
+#    Updated: 2022/07/12 00:46:16 by ghenaut-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,7 +84,6 @@ NAME	= libft.a
 
 
 all: ${NAME}
-	@make clean
 
 ${NAME}: ${OBJS}
 	@ar -rcs $@ $^

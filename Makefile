@@ -6,7 +6,7 @@
 #    By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/01 14:03:47 by ghenaut-          #+#    #+#              #
-#    Updated: 2022/07/07 22:20:14 by ghenaut-         ###   ########.fr        #
+#    Updated: 2022/07/12 00:46:01 by ghenaut-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,10 +37,8 @@ OBJS	= $(addprefix ${OBJSDIR}/, ${SRCS:%.c=%.o})
 B_OBJS	= $(addprefix ${OBJSDIR}/, ${B_SRCS:%.c=%.o})
 
 all: ${NAME}
-	@make clean
 
 bonus: ${NAME}_bonus
-	@make clean
 
 ${NAME}: ${OBJSDIR} ${OBJS}
 	@${CC} ${CFLAGS} ${OBJS} ${IFT} -o $@
