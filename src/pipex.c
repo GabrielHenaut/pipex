@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: Ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 15:31:36 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/07/07 22:31:10 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/07/12 20:43:33 by Ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ static void	check_args(int argc, char **argv, t_pipex *data)
 {
 	if (argc != 5)
 		msg_error("Invalid number of arguments.\n", 1);
-	get_infile(argv[1], data);
-	get_outfile(argv[argc - 1], data);
+	get_file(argv[1], argv[argc - 1], data);
 }
 
 void	close_pipes(t_pipex *data)
@@ -36,6 +35,7 @@ void	close_pipes(t_pipex *data)
 int	main(int argc, char **argv, char **envp)
 {
 	t_pipex	data;
+	int		rtn;
 
 	check_args(argc, argv, &data);
 	init_data(&data, argc, envp);
@@ -45,7 +45,9 @@ int	main(int argc, char **argv, char **envp)
 		data.idx++;
 	}
 	close_pipes(&data);
-	waitpid(-1, NULL, 0);
+	waitpid(-1, &rtn, 0);
 	parent_close(&data, "success", 0);
+	if (WEXITSTATUS(rtn) == 127)
+		return (127);
 	return (0);
 }

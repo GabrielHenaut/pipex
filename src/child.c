@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   child.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: Ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:50:34 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/07/07 22:30:36 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/07/12 20:28:08 by Ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	handle_dup(t_pipex *data)
 		data->pipe[(2 * data->idx) + 1]);
 }
 
-void	child(t_pipex data, char **argv, char **envp)
+int	child(t_pipex data, char **argv, char **envp)
 {
 	data.pid = fork();
 	if (!data.pid)
@@ -60,4 +60,5 @@ void	child(t_pipex data, char **argv, char **envp)
 			free_cmd(&data);
 		execve(data.cmd, data.cmd_args, envp);
 	}
+	return (0);
 }

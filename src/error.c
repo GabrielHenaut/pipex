@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: Ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:14:57 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/07/07 22:29:56 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/07/12 20:28:15 by Ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,16 @@ void	free_cmd(t_pipex *data)
 	}
 	free(data->cmd_args);
 	free(data->cmd);
+	free(data->pipe);
+	i = 0;
+	while (data->cmd_paths[i])
+	{
+		free(data->cmd_paths[i]);
+		i++;
+	}
+	free(data->cmd_paths);
 	write(2, tmp, ft_strlen(tmp));
 	write(2, "\n", 1);
 	free(tmp);
-	exit(6);
+	exit(127);
 }

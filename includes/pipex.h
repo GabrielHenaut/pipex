@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: Ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 15:32:59 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/07/07 22:58:02 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/07/12 20:12:27 by Ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,7 @@ typedef struct s_pipex
 }				t_pipex;
 
 //hadle_file.c
-void	get_outfile(char *argv, t_pipex *data);
-void	get_infile(char *argv, t_pipex *data);
+void	get_file(char *infile, char *outfile, t_pipex *data);
 
 //error.c
 void	msg_error(char *error, int exit_code);
@@ -53,7 +52,7 @@ void	free_cmd(t_pipex *data);
 void	init_data(t_pipex *data, int argc, char *envp[]);
 
 //child.c
-void	child(t_pipex data, char **argv, char **envp);
+int		child(t_pipex data, char **argv, char **envp);
 void	close_pipes(t_pipex *data);
 
 #endif
