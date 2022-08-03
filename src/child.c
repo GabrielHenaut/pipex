@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   child.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:50:34 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/07/12 20:28:08 by Ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/08/03 11:58:39 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static char	*get_cmd(char **paths, char *cmd)
 	char	*tmp;
 	char	*command;
 
+	if (access(cmd, 0) == 0)
+			return (cmd);
 	while (*paths)
 	{
 		tmp = ft_strjoin(*paths, "/");
@@ -58,7 +60,7 @@ int	child(t_pipex data, char **argv, char **envp)
 		data.cmd = get_cmd(data.cmd_paths, data.cmd_args[0]);
 		if (!data.cmd)
 			free_cmd(&data);
-		execve(data.cmd, data.cmd_args, envp);
+		execve(data.cmd, data.cmd_args, envp);  
 	}
 	return (0);
 }
